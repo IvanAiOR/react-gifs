@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en GridImagenes Debe mostrar el componente correctamente  1`] = `
+<div
+  className="card"
+>
+  <img
+    alt="Titulo"
+    src="algo.jpg"
+  />
+  <p>
+    Titulo
+  </p>
+</div>
+`;

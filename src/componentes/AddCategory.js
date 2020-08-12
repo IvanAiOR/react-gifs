@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export const AddCategory = ({setCategorias}) => {
-    const [NuevaCategoria, SetNuevaCategoria] = useState("Ingresa una categoría")
+    const [NuevaCategoria, SetNuevaCategoria] = useState('')
 
     const handleNewCategory = (e)=>{
         SetNuevaCategoria(e.target.value)
@@ -17,14 +17,15 @@ export const AddCategory = ({setCategorias}) => {
         }
         else{
             console.log(NuevaCategoria)
-            setCategorias(categorias=>[NuevaCategoria, ...categorias, ]);
+            setCategorias(categorias=>[NuevaCategoria, ...categorias ]);
+            SetNuevaCategoria('');
         }
-        SetNuevaCategoria(()=>'');
         
     }
 
     return (
         <form onSubmit={handleSubmit}>
+            <p>{NuevaCategoria}</p>
             <h3>Ingresa una categoria</h3>
             <input 
                 type="text"
