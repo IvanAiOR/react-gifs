@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { AddCategory } from './AddCategory';
 import { GridImagenes } from './GridImagenes';
 
-export const GifExpertApp = () => {
+export const GifExpertApp = ({DefaultCategorias=[]}) => {
 // const categorias =[`Gatos`, `perros`, `Anime`]
-const [categorias, setCategorias] = useState(['One punch'])
+const [categorias, setCategorias] = useState(DefaultCategorias)
     
 
 
@@ -18,7 +18,7 @@ return (
             <ol>
                 {
                     
-                    categorias.map(
+                    DefaultCategorias.map(
                         (categoria,indice)=>{
                             console.log('categoria en gridexpertapp: ',categoria)
                             return(

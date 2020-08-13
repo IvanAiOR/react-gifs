@@ -1,15 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pruebas en GridImagenes Debe mostrar el componente correctamente  1`] = `
-<div
-  className="card"
->
-  <img
-    alt="Titulo"
-    src="algo.jpg"
-  />
-  <p>
-    Titulo
-  </p>
-</div>
+exports[`Pruebas en <GridImagenes/> debe mostrar items cuando se carga la imagen de useFetchGifs 1`] = `
+<Fragment>
+  <h3>
+    ejemplo
+  </h3>
+  <div
+    className="card-grid"
+  >
+    <GridItem
+      id={1}
+      key="1"
+      title="prueba1"
+      url="www.asd.asd/algo.png"
+    />
+    <GridItem
+      id={2}
+      key="2"
+      title="prueba2"
+      url="www.asd.asd/algo2.png"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`Pruebas en <GridImagenes/> debe mostrarse correctamente el componente  1`] = `
+<Fragment>
+  <h3>
+    ejemplo
+  </h3>
+  <div
+    className="card-grid"
+  >
+    <h5>
+      Cargando...
+    </h5>
+  </div>
+</Fragment>
 `;

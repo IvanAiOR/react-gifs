@@ -1,33 +1,68 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-import { GridItem } from '../../componentes/GridItem';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
+import { GridImagenes } from '../../componentes/GridImagenes';
+import { useFetchGifs } from '../../hooks/useFetchGifs';
+import '@testing-library/jest-dom';
 
-describe('pruebas en GridImagenes', () => {
+jest.mock('../../hooks/useFetchGifs');
+
+describe('Pruebas en <GridImagenes/>', () => {
+    const categoria= 'ejemplo';
     
-    const url = 'algo.jpg';
-    const titulo = 'Titulo';
+        useFetchGifs.mockReturnValue({
+            data: [],
+            loading: true
+        });
+
+    let wrapper= shallow(<GridImagenes categoria={categoria}/>);
     
-    const wrapper= shallow(<GridItem title={titulo} url={url}/>);
-    
-    test('Debe mostrar el componente correctamente ', () => {
+    test('debe mostrarse correctamente el componente ', () => {
+        wrapper= shallow(<GridImagenes categoria={categoria}/>);
+
         expect(wrapper).toMatchSnapshot();
+    })  
+
+    test('debe mostrar items cuando se carga la imagen de useFetchGifs', () => {
+        const arrImgs= [{
+            id: 1,
+            title: 'prueba1',
+            url: 'www.asd.asd/algo.png'
+        },
+        {
+            id: 2,
+            title: 'prueba2',
+            url: 'www.asd.asd/algo2.png'
+        }
+    ];
+    useFetchGifs.mockReturnValue({
+        data: arrImgs,
+        loading: false
+    });
+    wrapper= shallow(<GridImagenes categoria={categoria}/>);
+    expect(wrapper).toMatchSnapshot();
+
     })
 
-    test('debe tener un parrao con el titulo', () => {
-        const parrafo = wrapper.find('p');
-        expect(parrafo.text().trim()).toBe(titulo);
+    test('debe observar si existe el componente  ', () => {
+        const arrImgs= [{
+                id: 1,
+                title: 'prueba1',
+                url: 'www.asd.asd/algo.png'
+            },
+            {
+                id: 2,
+                title: 'prueba2',
+                url: 'www.asd.asd/algo2.png'
+            }
+        ];
+        useFetchGifs.mockReturnValue({
+            data: arrImgs,
+            loading: false
+        });
+        wrapper= shallow(<GridImagenes categoria={categoria}/>);
+            expect(wrapper.find('GridItem').length).toBe(arrImgs.length) //espera que la cantidad de componente de grid imagenes sea la misma cantidad de objetos en la lista de imagenes
     })
     
-    test('debe tener una imagen con la url', () => {
-        const img= wrapper.find('img');
-        expect(img.props().src).toBe(url);
-        expect(img.props().alt).toBe(titulo);
-    })
     
-    test('el div debe contener la clase card', () => {
-        const div= wrapper.find('div');
-        expect(div.prop('className').includes('card')).toBe(true);
-    })
     
 })

@@ -3,6 +3,8 @@ import { GridItem } from './GridItem';
 import { getGifs } from '../helpers/GetImagenes';
 import { useFetchGifs } from '../hooks/useFetchGifs';
 
+import PropTypes from 'prop-types';
+
 export  const GridImagenes = ({categoria}) => {
 
     
@@ -37,3 +39,6 @@ export  const GridImagenes = ({categoria}) => {
     );
 }
 
+GridImagenes.prototype={
+    categoria: PropTypes.string.isRequired
+}
